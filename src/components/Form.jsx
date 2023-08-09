@@ -3,10 +3,8 @@ import NumberInput from './NumberInput'
 const FormInput = ({
   inputData,
   submitBtn,
-  filterData,
   userName,
   number,
-  filter,
 }) => {
   return (
     <form className="form-container">
@@ -16,14 +14,7 @@ const FormInput = ({
       <button type="submit" onClick={submitBtn}>
         Додати
       </button>
-      <label>
-        <input
-          type="search"
-          name="filter"
-          value={filter}
-          onChange={filterData}
-        />
-      </label>
+      
     </form>
   );
 };

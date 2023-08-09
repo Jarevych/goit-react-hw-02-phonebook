@@ -1,7 +1,16 @@
-const ContactList = ({ contacts, onDeleteItem}) => {
+const ContactList = ({ contacts, onDeleteItem, filter, filterData}) => {
   return (
     <div>
       <h2 className="contacts-title">Contacts</h2>
+      <label>
+        Filter
+        <input
+          type="search"
+          name="filter"
+          value={filter}
+          onChange={filterData}
+        />
+      </label>
       <ul className="contact-list">
         {contacts.map(contact => (
           <li key={contact.id} className="contact-item">

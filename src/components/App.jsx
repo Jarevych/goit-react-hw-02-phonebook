@@ -81,14 +81,14 @@ export class App extends React.Component {
         <FormInput
           inputData={this.handleInput}
           submitBtn={this.handleSubmit}
-          filterData={this.handleFilter}
           userName={this.state.name}
           number={this.state.number}
-          filter={this.state.filter}
-        />
+          />
         <ContactList
+          filterData={this.handleFilter}
           contacts={filteredContacts}
           onDeleteItem={this.deleteItem}
+          filter={this.state.filter}
         />
       </div>
     );
