@@ -9,6 +9,15 @@ export class App extends React.Component {
     filter: '',
   };
   addContact = newContact => {
+    const contactExists = this.state.contacts.some(
+      contact =>
+        contact.name.toLowerCase().includes(newContact.name.toLowerCase()) ||
+        contact.number === newContact.number
+    );
+    if (contactExists) {
+      alert(`"${newContact.name}"is already in contacts`);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
       name: '',
@@ -50,10 +59,8 @@ export class App extends React.Component {
           />
         </label>
         <ContactList
-          filterData={this.handleFilter}
           contacts={filteredContacts}
           onDeleteItem={this.deleteItem}
-          filter={this.state.filter}
         />
       </div>
     );

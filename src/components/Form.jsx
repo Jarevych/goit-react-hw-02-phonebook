@@ -21,19 +21,6 @@ const schema = yup.object().shape({
     .required('Number is required'),
 });
 
-// handleInput = e => {
-//   const { name, value } = e.currentTarget;
-//   this.setState({ [name]: value });
-// };
-
-// const FormInput = ({
-//   inputData,
-//   userName,
-//   number,
-//   contacts,
-//   // submitBtn
-// }) => {
-
 class FormInput extends React.Component {
   state = {
     name: '',
@@ -51,24 +38,11 @@ class FormInput extends React.Component {
       return false;
     }
   };
-  addContact = newContact => {
-    this.props.addContact(newContact);
-  };
 
   handleSubmit = e => {
     e.preventDefault();
     if (this.validateInput()) {
       const { name, number } = this.state;
-      const contactExists = this.props.contacts.some(
-        contact =>
-          contact.name.toLowerCase().includes(this.state.name.toLowerCase()) ||
-          contact.number === number
-      );
-
-      if (contactExists) {
-        alert(`"${name}"is already in contacts`);
-        return;
-      }
       const newId = nanoid();
       const newContact = { id: newId, name, number };
       this.props.addContact(newContact);
@@ -80,13 +54,6 @@ class FormInput extends React.Component {
     this.setState({ [name]: value });
   };
 
-  // addContact = newContact => {
-  //   this.setState(prevState => ({
-  //     contacts: [...prevState.contacts, newContact],
-  //     name: '',
-  //     number: '',
-  //   }));
-  // };
   handleNameChange = e => {
     this.setState({ name: e.target.value });
   };
@@ -96,7 +63,6 @@ class FormInput extends React.Component {
   };
 
   render() {
-    // const { inputData, userName, number } = this.props;
     return (
       <form className="form-container">
         <NameInput

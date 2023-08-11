@@ -1,4 +1,4 @@
-const NumberInput = ({number, inputData}) => {
+const NumberInput = ({ number, inputData }) => {
   return (
     <label>
       Number
@@ -6,13 +6,12 @@ const NumberInput = ({number, inputData}) => {
         type="tel"
         name="number"
         value={number}
-        // pattern="\+?[0-9\s\-\(\)]+"
+        pattern="\+?[0-9\s\-\(\)]+"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         onChange={inputData}
-        // onBlur={this.handleBlur}
       />
     </label>
   );
 };
-export default NumberInput
+export default NumberInput;
