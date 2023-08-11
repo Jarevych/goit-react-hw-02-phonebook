@@ -8,10 +8,12 @@ export class App extends React.Component {
     contacts: [],
     filter: '',
   };
-
-  handleInput = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value }, () => {});
+  addContact = newContact => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+      name: '',
+      number: '',
+    }));
   };
 
   handleFilter = e => {
@@ -35,10 +37,18 @@ export class App extends React.Component {
         <FormInput
           inputData={this.handleInput}
           addContact={this.addContact}
-          userName={this.state.name}
-          number={this.state.number}
           contacts={this.state.contacts}
         />
+        <h2 className="contacts-title">Contacts</h2>
+        <label>
+          Filter
+          <input
+            type="search"
+            name="filter"
+            value={this.state.filter}
+            onChange={this.handleFilter}
+          />
+        </label>
         <ContactList
           filterData={this.handleFilter}
           contacts={filteredContacts}

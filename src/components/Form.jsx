@@ -51,6 +51,9 @@ class FormInput extends React.Component {
       return false;
     }
   };
+  addContact = newContact => {
+    this.props.addContact(newContact);
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -62,23 +65,28 @@ class FormInput extends React.Component {
           contact.number === number
       );
 
-      if (!contactExists) {
-        const newId = nanoid();
-        const newContact = { id: newId, name, number };
-        this.addContact(newContact);
-        this.setState({ name: '', number: '' });
-      } else {
+      if (contactExists) {
         alert(`"${name}"is already in contacts`);
+        return;
       }
+      const newId = nanoid();
+      const newContact = { id: newId, name, number };
+      this.props.addContact(newContact);
+      this.setState({ name: '', number: '' });
     }
   };
-  addContact = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
-    }));
+  handleInput = e => {
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
   };
+
+  // addContact = newContact => {
+  //   this.setState(prevState => ({
+  //     contacts: [...prevState.contacts, newContact],
+  //     name: '',
+  //     number: '',
+  //   }));
+  // };
   handleNameChange = e => {
     this.setState({ name: e.target.value });
   };
